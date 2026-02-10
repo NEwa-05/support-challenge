@@ -84,3 +84,9 @@ kubectl -n apps create secret tls gohellocert --cert=certs/generated/gohello.crt
 kubectl -n apps create secret generic ca --from-file=ca.crt=certs/generated/ca.crt
 kubectl apply -f k8s/2/
 ```
+
+## Cleanup
+
+```bash
+k3d cluster delete sup
+```

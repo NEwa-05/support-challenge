@@ -3,19 +3,19 @@
 ## Create cluster
 
 ```bash
-sind create --cluster swarm \
+sind create --cluster sup \
   --image=docker:dind \
   --managers="1" \
   --workers="2" \
   -p 14443:8443 \
   -p 14080:8000 \
-  --network-name="swarm"
+  --network-name="sup"
 ```
 
 ## Connect docker cli to cluster
 
 ```bash
-$(sind env --cluster swarm)
+$(sind env --cluster sup)
 ```
 
 ## Deploy Traefik
@@ -28,4 +28,11 @@ docker stack deploy -c ./docker/traefik/traefik.yaml traefik --detach=true
 
 ```bash
 docker stack deploy -c ./docker/whoami/whoami.yaml whoami --detach=true
+```
+
+## Cleanup
+
+```bash
+unset DOCKER_HOST
+sind delete --cluster sup
 ```
