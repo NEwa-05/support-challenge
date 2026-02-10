@@ -1,0 +1,75 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gohello
+  namespace: apps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gohello
+  template:
+    metadata:
+      labels:
+        app: gohello
+    spec:
+      containers:
+        - name: gohello
+          resources:
+            requests:
+              memory: "32Mi"
+              cpu: "50m"
+            limits:
+              memory: "32Mi"
+              cpu: "50m"
+          image: newa/gohello:v4.0.27-tls
+          imagePullPolicy: Always
+          volumeMounts:
+          - name: certs
+            mountPath: /certs
+      volumes:
+        - name: certs
+          secret:
+            secretName: gohellocert
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gohello
+  namespace: apps
+  labels:
+    app: gohello
+spec:
+  type: ClusterIP
+  ports:
+    - port: 443
+      name: tcp
+  selector:
+    app: gohello
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: gohello
+  namespace: apps
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`gohello.localdemo.localhost`)
+      services:
+        - name: gohello
+          port: 443
+          serversTransport: mytransport
+  tls: {}
+---
+apiVersion: traefik.io/v1alpha1
+kind: ServersTransport
+metadata:
+  name: mytransport
+  namespace: apps
+spec:
+  rootCAs:
+    - secret: ca
