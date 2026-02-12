@@ -1,0 +1,6 @@
+http:
+  routers:
+    dashboard:
+      rule: Host(`dashboard.localdemo.localhost`)
+      service: api@internal
+      entryPoints: web

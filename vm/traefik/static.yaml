@@ -1,0 +1,33 @@
+
+entryPoints:
+  web:
+    address: ":15080"
+  websecure:
+    address: ":15443"
+    http:
+      tls: true
+  traefik: 
+    address: ":20080"
+  metrics:
+    address: ":29100"
+
+log:
+  level: DEBUG
+  filePath: ./vm/traefik/logs/traefik.log
+accessLog:
+  filePath: ./vm/traefik/logs/access.log
+  format: json
+  fields:
+    defaultMode: keep
+    headers:
+      defaultMode: keep
+
+api: 
+  insecure: true
+  dashboard: true
+
+providers:
+  file:
+    directory: ./vm/traefik/dynamic
+    watch: true
+  

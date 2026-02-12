@@ -1,0 +1,10 @@
+http:
+  routers:
+    whoami:
+      rule: Host(`whoami.localdemo.localhost`)
+      service: whoiam
+  services:
+    whoami:
+      loadBalancer:
+        servers: 
+          - url: http://localhost:12880

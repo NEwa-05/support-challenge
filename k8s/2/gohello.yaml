@@ -71,5 +71,6 @@ metadata:
   name: mytransport
   namespace: apps
 spec:
-  rootCAs:
-    - secret: ca
+  insecureSkipVerify: true
+  # rootCAs:
+  #   - secret: ca

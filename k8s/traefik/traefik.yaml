@@ -25,26 +25,6 @@ logs:
         defaultmode: keep
       headers:
         defaultmode: keep
-metrics:
-  addInternals: false
-  prometheus: null
-  otlp:
-    enabled: true
-    addrouterslabels: true
-    grpc:
-      enabled: true
-      insecure: true
-      endpoint: otel-collector-opentelemetry-collector.observability.svc.cluster.local:4317
-      tls: null
-tracing:
-  addInternals: false
-  otlp:
-    enabled: true
-    grpc:
-      enabled: true
-      insecure: true
-      endpoint: otel-collector-opentelemetry-collector.observability.svc.cluster.local:4317
-      tls: null
 resources:
   requests:
     memory: 384Mi
@@ -61,13 +41,3 @@ ports:
     http:
       tls:
         enabled: true
-# additionalArguments:
-#   - --experimental.otlpLogs=true
-#   - --log.otlp=true
-#   - --log.otlp.grpc=true
-#   - --log.otlp.grpc.insecure=true
-#   - --log.otlp.grpc.endpoint=otel-collector-opentelemetry-collector.observability.svc.cluster.local:4317
-#   - --accesslog.otlp=true
-#   - --accesslog.otlp.grpc=true
-#   - --accesslog.otlp.grpc.insecure=true
-#   - --accesslog.otlp.grpc.endpoint=otel-collector-opentelemetry-collector.observability.svc.cluster.local:4317
