@@ -9,7 +9,7 @@ mkdir -p file/hub k8s/hub root/hub swarm/hub
 ## download Hub binary for file provider
 
 ```bash
-curl -OL https://github.com/traefik/traefik/releases/download/v3.6.8/traefik_v3.6.8_darwin_arm64.tar.gz && tar -xzf traefik_v3.6.8_darwin_arm64.tar.gz traefik && mv traefik ./vm/traefik/traefik && rm -rf traefik_v3.6.8_darwin_arm64.tar.gz traefik-hub-darwin-arm64
+curl -OL https://github.com/traefik/traefik/releases/download/v3.6.9/traefik_v3.6.9_darwin_arm64.tar.gz && tar -xzf traefik_v3.6.9_darwin_arm64.tar.gz traefik && mv traefik ./vm/traefik/traefik && rm -rf traefik_v3.6.9_darwin_arm64.tar.gz traefik-hub-darwin-arm64
 ```
 
 ## Run Whoami
